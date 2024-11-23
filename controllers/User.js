@@ -9,6 +9,7 @@ dotenv.config();
 
 export const UserRegister = async (req, res, next) => {
   try {
+    console.log("test")
     const { email, password, name, img } = req.body;
 
     // Check if the email is in use
@@ -183,6 +184,10 @@ export const getUserDashboard = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getAllWorkouts = async (req, res) => {
+  res.send("All worksouts")
+}
 
 export const getWorkoutsByDate = async (req, res, next) => {
   try {

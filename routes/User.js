@@ -3,6 +3,7 @@ import {
   UserLogin,
   UserRegister,
   addWorkout,
+  getAllWorkouts,
   getUserDashboard,
   getWorkoutsByDate,
 } from "../controllers/User.js";
@@ -14,6 +15,7 @@ router.post("/signup", UserRegister);
 router.post("/signin", UserLogin);
 
 router.get("/dashboard", verifyToken, getUserDashboard);
+router.get("/get-all-workouts", verifyToken, getAllWorkouts)
 router.get("/workout", verifyToken, getWorkoutsByDate);
 router.post("/workout", verifyToken, addWorkout);
 

@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const WorkoutSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    //   required: true,
+    // },
     category: {
       type: String,
       required: true,
@@ -30,6 +30,15 @@ const WorkoutSchema = new mongoose.Schema(
     },
     caloriesBurned: {
       type: Number,
+    },
+    imageUrl: {
+      type: String
+    },
+    videoUrl: {
+      type: String
+    },
+    info: {
+      type: String
     },
     date: {
       type: Date,
