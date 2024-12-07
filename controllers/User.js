@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { createError } from "../error.js";
 import User from "../models/User.js";
-import Workout from "../models/Workout.js";
-
+ import Workout from "../models/Workout.js";
+// import { Workout } from "../models/Workout.js";
+// import Workout from "../models/Workout.js"; 
 dotenv.config();
-
 export const UserRegister = async (req, res, next) => {
   try {
     console.log("test")
@@ -36,6 +36,13 @@ export const UserRegister = async (req, res, next) => {
     return next(error);
   }
 };
+
+//
+
+
+
+
+//
 
 export const UserLogin = async (req, res, next) => {
   try {
@@ -289,6 +296,26 @@ export const addWorkout = async (req, res, next) => {
   }
 };
 
+export const getWorkoutById = async (req, res) => {
+  try {
+      const { _id } = req.params;
+
+      // Fetch workout by ID from the database
+      const workout = await Workout.findById(_id);
+
+      if (!workout) {
+          return res.status(404).json({ error: "Workout not found" });
+      }
+
+      res.status(200).json(workout);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error. Please try again later." });
+  }
+};
+
+
+
 // Function to parse workout details from a line
 const parseWorkoutLine = (parts) => {
   const details = {};
@@ -314,3 +341,4 @@ const calculateCaloriesBurnt = (workoutDetails) => {
   const caloriesBurntPerMinute = 5; // Sample value, actual calculation may vary
   return durationInMinutes * caloriesBurntPerMinute * weightInKg;
 };
+
